@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+<h1>My Profile</h1>
+{% csrf_token %}
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+
+    {% if user.is_staff %}
+        <button onclick="location.href='/vacancy/new'" type="button">
+        Create New Vacancy</button>
+        {% else %}
+        <button onclick="location.href='/resume/new'" type="button">
+        Create New Resume</button>
+    {% endif %}
+{% else %}
+    <p>Welcome, new user. Please log in.</p>
+{% endif %}
+</body>
+</html>
